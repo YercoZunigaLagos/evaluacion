@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Productos;
+use Yajra\DataTables\DataTables;
 
 class productosController extends Controller
 {
@@ -22,8 +23,8 @@ class productosController extends Controller
     public function index()
     {
         //
-        $productos = Productos::all();
-        return view('productos/listaProductos',compact('productos'));
+        
+        return view('productos/listaProductos');
     }
 
     /**
@@ -91,4 +92,25 @@ class productosController extends Controller
     {
         //
     }
+     public function dataTable()
+    {
+        
+         //llamando a todos los datos
+         return DataTables::of(Productos::select('id','nombre','descripcion','marca','precio','costo','created_at'))
+         ->editColumn('created_at',function(Productos $producto){
+             return $producto->created_at->diffForHumans();
+         })
+        //  ->addColumn('show','<a href="{{route(\'Productos.show\', $id)}}" class="btn btn-info btn-sm">' .('ver').'</a>')
+        //  ->addColumn('edit','<a href="{{route(\'Productos.edit\', $id)}}" class="btn btn-warning btn-sm">' .('Editar').'</a>')
+        //  ->addColumn('delete', '<form action="{{route(\'Productos.destroy\', $id)}}" method="POST">
+        // <input type="hidden" name="_method" value="DELETE">
+        // <input type="submit" name="submit" value="'.('Eliminar').'" class="btn btn-danger btn-sm" onClick="return confirm(\'Seguro?\')">
+        // {{csrf_field()}}
+        //  </form>')
+        //  ->rawColumns(['show', 'edit','delete'])
+        ->addColumn('btn', 'productos.dataTable.btn')
+        ->rawColumns(['btn'])
+         ->toJson();
+    }
+    
 }

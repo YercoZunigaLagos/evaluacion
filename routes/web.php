@@ -23,4 +23,6 @@ Route::resource('/Mantenedor/Productos','productosController');
 
 Route::get('/Mantenedor/Productos','productosController@index')->name('mantenedorProductos');
 
+Route::get('dataTableProducto', 'productosController@dataTable')->name('dataTableProducto');
+
 
