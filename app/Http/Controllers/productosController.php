@@ -34,7 +34,7 @@ class productosController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -56,7 +56,7 @@ class productosController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('productos.ver');
     }
 
     /**
@@ -96,7 +96,7 @@ class productosController extends Controller
     {
         
          //llamando a todos los datos
-         return DataTables::of(Productos::select('id','nombre','descripcion','marca','precio','costo','created_at'))
+         return DataTables::of(Productos::select('id','nombre','marca','precio','costo','created_at'))
          ->editColumn('created_at',function(Productos $producto){
              return $producto->created_at->diffForHumans();
          })

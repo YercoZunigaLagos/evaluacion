@@ -16,14 +16,13 @@
             <table class="table table-bordered" id="notaTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">marca</th>
-                        <th scope="col">precio</th>
-                        <th scope="col">costo</th>
-                        <th scope="col">creado hace</th>
-                        <th ></th>
+                        <th scope="col hidden">Id</th>
+                        <th>Nombre</th>
+                        <th>marca</th>
+                        <th>precio</th>
+                        <th>costo</th>
+                       
+                        <th>Acciones</th>
                         
                         
 
@@ -31,19 +30,7 @@
                     </tr>
                 </thead>
                 
-                <tfoot>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>marca</th>
-                        <th>precio</th>
-                        <th>costo</th>
-                        <th>creado hace</th>
-                        <th></th>
-                        
-                    </tr>
-                </tfoot>
+                
 
             </table>
 
@@ -64,11 +51,11 @@
             columns:[
                 {data:'id'},
                 {data:'nombre', },
-                {data:'descripcion'},
+                
                 {data:'marca'},
                 {data:'precio'},
                 {data:'costo'},
-                {data:'created_at', name:'creado hace'},
+                
                 {data:'btn'},
                 
                 
