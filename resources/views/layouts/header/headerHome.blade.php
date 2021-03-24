@@ -14,6 +14,3 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('/dash/css/sb-admin-2.min.css')}}" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
-
-    <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">

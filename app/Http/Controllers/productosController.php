@@ -23,7 +23,7 @@ class productosController extends Controller
     public function index()
     {
         //
-        
+
         return view('productos/listaProductos');
     }
 
@@ -34,7 +34,7 @@ class productosController extends Controller
      */
     public function create()
     {
-        
+        return view('productos.crear');
     }
 
     /**
@@ -45,7 +45,10 @@ class productosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto = $request->all();
+        
+        Productos::create($producto);
+        return redirect()->route('mantenedorProductos');
     }
 
     /**
@@ -56,7 +59,8 @@ class productosController extends Controller
      */
     public function show($id)
     {
-        return view('productos.ver');
+        $producto = Productos::findOrFail($id);
+        return view('productos.ver', compact('producto'));
     }
 
     /**
@@ -67,7 +71,8 @@ class productosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto = Productos::findOrFail($id);
+        return view('productos.editar', compact('producto'));
     }
 
     /**
@@ -79,7 +84,14 @@ class productosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $producto = Productos::find($id);
+        $producto->nombre = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->marca = $request->marca;
+        $producto->costo = $request->costo;
+        $producto->precio = $request->precio;
+        $producto->save();
+        return redirect()->route('mantenedorProductos');
     }
 
     /**
@@ -90,11 +102,14 @@ class productosController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $producto = Productos::findOrFail($id);
+        $producto->delete();
+        return redirect()->back();
     }
      public function dataTable()
     {
-        
+
          //llamando a todos los datos
          return DataTables::of(Productos::select('id','nombre','marca','precio','costo','created_at'))
          ->editColumn('created_at',function(Productos $producto){
@@ -112,5 +127,5 @@ class productosController extends Controller
         ->rawColumns(['btn'])
          ->toJson();
     }
-    
+
 }
